@@ -17,7 +17,7 @@ class MyApplication(web.application):
 		return web.httpserver.runsimple(func, ('127.0.0.1', port))
 
 class download(object):
-	def GET(self, *args, **agrv):
+	def GET(self):
 		user_data = web.input()
 		try:
 			link = user_data.link.encode("utf8")
@@ -25,6 +25,7 @@ class download(object):
 			song_name = user_data.song_name
 			singer_name = user_data.singer_name
 			file_name = "songs/%s-%s.m4a" %(singer_name, song_name)
+			print file_name.split("/")[-1]
 			file_name = file_name.encode("gbk")
 			if not os.path.exists(file_name):
 				# urllib.urlretrieve(link, file_name)
